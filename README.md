@@ -1,4 +1,4 @@
 ## kotlin practice module
 
 #### kotlin-lecture-library-app
-- kotlin spring-boot library-app 강의
+- kotlin&spring-boot library-app 강의
