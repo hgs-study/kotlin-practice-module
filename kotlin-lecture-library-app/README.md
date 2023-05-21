@@ -1,8 +1,11 @@
 ### 키워드 리스트
+- elvis operator
 - backing field / backing properties
 - data class (equals와 hashCode 자동 재정의)
 - platform type
 - trailing comma
+- it (람다에서 파라미터를 명시적으로 적어주지 않아도 it으로 사용 가능)
+- 확장함수 (CrudRepositoryExtentions.kt - findByIdOrNull 등)
 
 
 ### Kotlin & JPA항 유의사항
