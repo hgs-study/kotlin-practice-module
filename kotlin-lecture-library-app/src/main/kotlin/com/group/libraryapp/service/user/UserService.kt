@@ -25,7 +25,7 @@ class UserService(
 
     fun getUsers(): List<UserResponse>{
         return userRepository.findAll()
-            .map {UserResponse(it)} // 람다에서 파라미터를 명시적으로 적어주지 않아도 it으로 사용 가능
+            .map {UserResponse.of(it)} // 람다에서 파라미터를 명시적으로 적어주지 않아도 it으로 사용 가능
 
             // 방법 1. .map{user -> UserResponse(user)}
             // 방법 2. .map(::UserResponse)
