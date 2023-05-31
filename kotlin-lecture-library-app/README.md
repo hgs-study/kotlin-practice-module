@@ -6,6 +6,7 @@
 - trailing comma
 - it (람다에서 파라미터를 명시적으로 적어주지 않아도 it으로 사용 가능)
 - 확장함수 (CrudRepositoryExtentions.kt - findByIdOrNull 등)
+- 스프레드 연산자 (* = 가변인자)
 
 
 ### Kotlin & JPA항 유의사항
