@@ -7,6 +7,7 @@
 - it (람다에서 파라미터를 명시적으로 적어주지 않아도 it으로 사용 가능)
 - 확장함수 (CrudRepositoryExtentions.kt - findByIdOrNull 등)
 - 스프레드 연산자 (* = 가변인자)
+- object mother pattern (fixture라는 정적 팩토리 메서드를 사용하여 객체 필드가 변경돼어도 테스트코드에 영향을 주지 않음)
 
 
 ### Kotlin & JPA항 유의사항
