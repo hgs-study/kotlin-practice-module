@@ -5,6 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.21'
     id 'org.jetbrains.kotlin.plugin.jpa' version '1.6.21' // @Entity, @Embeddable, @MappedSuperclass가 붙은 클래스에 기본 생성자 생성
     id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21' // 클래스, 메서드 상속 (= open)
+    id 'org.jetbrains.kotlin.kapt' version '1.6.21' // Kotlin Annotation Processing Tool 설치
 }
 
 group = 'com.group'
@@ -21,6 +22,12 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3' // jackson <-> kotlin 호환
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
