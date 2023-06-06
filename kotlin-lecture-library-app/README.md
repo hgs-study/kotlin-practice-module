@@ -8,6 +8,7 @@
 - 확장함수 (CrudRepositoryExtentions.kt - findByIdOrNull 등)
 - 스프레드 연산자 (* = 가변인자)
 - object mother pattern (fixture라는 정적 팩토리 메서드를 사용하여 객체 필드가 변경돼어도 테스트코드에 영향을 주지 않음)
+- apply, with, let, also, run (scope functions)
 
 
 ### Kotlin & JPA항 유의사항
@@ -27,3 +28,35 @@
       - userLoanHistory의 equals는 user 호출
 - 생성자 추적
   - entity가 생성이 되는 로직을 찾고 싶으면 "constructor" 지시어를 명시적으로 작성하고 추적하면 생성이 되는 로직만 추적 가능
+
+### Scope Functions
+- let
+  - fun <T, R> T.let(block: (T) -> R): R
+  - T의 확장 함수
+  - 자기 자신(T)를 입력 받아서 블럭함수(R)을 반환
+  - ex) val name = product?.let { product.name } ?: "default name"
+- with
+  - fun <T, R> with(receiver: T, block: T.() -> R): R
+  - 일반 함수이기 때문에 객체 receiver를 직접 입력받고, 객체를 사용하기 위한 두 번째 파라미터 블럭을 받음
+  - T.()를 람다 리시버라고 하는데, 입력을 받으면 함수 내에서 this를 사용하지 않고도 입력받은 객체(receiver)의 속성을 변경 가능
+  - with는 non-null의 객체를 사용하고 블럭의 return 값이 필요하지 않을 때 사용
+- run (2가지 형태)
+  - 첫번째
+    - fun <T, R> T.run(block: T.() -> R): R
+    - with와 마찬가지로 람다리시버를 입력받지만, 차이점은 T의 확장함수
+  - 두번째
+    - fun <R> run(block: () -> R): R
+    - 입력이 없으며 객체를 생성할 때 사용
+- apply
+  - fun <T> T.apply(block: T.() -> Unit): T
+  - T의 확장함수이며, 람다 리시버를 입력으로 받는다
+  - run과 유사하지만, 자기자신(T)를 반환한다
+- also
+  - fun <T> T.also(block: (T) -> Unit): T
+  - T의 확장함수이며, 자기 자신(T)을 입력 받는다
+  - 입력을 T로 받았기 때문에, it으로 프로퍼티 접근
+  - 객체의 속성을 전혀 사용하지 않거나 변경하지 않고 사용하는 경우에 also를 사용
+  - 객체의 데이터 유효성을 확인하거나, 디버그, 로깅 등의 부가적인 목적으로 사용할 때에 적합
+  - apply와 also는 자기 자신을 리턴한다는 점에서 Builder 패턴과 동일한 용도로 사용
+- 출처
+  - https://blog.yena.io/studynote/2020/04/15/Kotlin-Scope-Functions.html
